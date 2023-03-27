@@ -12,6 +12,7 @@ import {
   Heading,
   List,
   ListItem,
+  Progress,
   Spacer,
 } from '@chakra-ui/react';
 
@@ -33,7 +34,7 @@ export const ContactList = () => {
   return (
     <List justifyContent={'space-between'}>
       {loading ? (
-        <h1>Loadind</h1>
+        <Progress size="xs" isIndeterminate />
       ) : (
         filtered.map(contact => (
           <Flex alignItems="center">
