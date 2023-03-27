@@ -1,8 +1,6 @@
+import { Heading, Input, InputGroup } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-
 import { setFilter } from '../../redux/createSlice';
-
-import style from '../style.module.css';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -12,16 +10,24 @@ export const Filter = () => {
   };
 
   return (
-    <div className={style.filterwrapper}>
-      <label htmlFor="filter" className={style.label}>
-        Find contacts by name
+    <div>
+      <label htmlFor="filter">
+        <Heading as="h4" size="md" pl={5} mb={3}>
+          Find contacts by name
+        </Heading>
       </label>
-      <input
-        type="text"
-        name="filter"
-        className={style.forminput}
-        onChange={onChangeFilter}
-      />
+      <InputGroup minWidth="max-content" alignItems="center" pl={5}>
+        <Input
+          border="2px"
+          borderRadius={14}
+          borderColor="gray.400"
+          p={5}
+          width={'580px'}
+          type="text"
+          name="filter"
+          onChange={onChangeFilter}
+        />
+      </InputGroup>
     </div>
   );
 };

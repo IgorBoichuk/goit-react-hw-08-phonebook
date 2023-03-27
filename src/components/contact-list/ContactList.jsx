@@ -1,12 +1,19 @@
-import style from '../style.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { deleteContact } from 'redux/operations';
 import {
   selectAllContacts,
   selectFilter,
   selectIsLoading,
 } from 'redux/selectors';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  List,
+  ListItem,
+  Spacer,
+} from '@chakra-ui/react';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -24,23 +31,32 @@ export const ContactList = () => {
   };
 
   return (
-    <ul className={style.contactlist}>
+    <List justifyContent={'space-between'}>
       {loading ? (
         <h1>Loadind</h1>
       ) : (
         filtered.map(contact => (
-          <li key={contact.id} className={style.contactitem}>
-            {contact.name}: {contact.phone}
-            <button
-              className={style.deletebtn}
-              id={contact.id}
-              onClick={onClickToDelete}
-            >
-              Delete
-            </button>
-          </li>
+          <Flex alignItems="center">
+            <ListItem key={contact.id}>
+              <Flex alignItems="center" w={'600px'} justify="space-between">
+                <Box p="4">
+                  <Heading size="md">
+                    {contact.name}: {contact.phone}
+                  </Heading>
+                </Box>
+                <Spacer />
+                <Button
+                  colorScheme="blue"
+                  id={contact.id}
+                  onClick={onClickToDelete}
+                >
+                  Delete
+                </Button>
+              </Flex>
+            </ListItem>
+          </Flex>
         ))
       )}
-    </ul>
+    </List>
   );
 };
