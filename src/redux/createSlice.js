@@ -8,6 +8,7 @@ const contactsSlice = createSlice({
       items: [],
       isLoading: false,
       error: null,
+      login: false,
     },
     filter: '',
   },

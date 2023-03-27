@@ -1,4 +1,4 @@
-import { Header } from './header/Header';
+import { Navigation } from './navigation/Navigation';
 import { ContactForm } from './contact-form/ContactForm';
 import { ContactList } from './contact-list/ContactList';
 import { Filter } from './filter/Filter';
@@ -16,7 +16,8 @@ export function App() {
 
   return (
     <Box p={5} w={900} ml={100}>
-      <Header />
+      <Navigation />
+
       <div>
         <Heading as="h1" size="4xl" p={5}>
           Phonebook
