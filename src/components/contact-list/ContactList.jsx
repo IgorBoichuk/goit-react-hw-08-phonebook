@@ -34,7 +34,7 @@ export const ContactList = () => {
   return (
     <List justifyContent={'space-between'}>
       {loading ? (
-        <Progress size="xs" isIndeterminate />
+        <Progress size="md" colorScheme="pink" w="600px" isIndeterminate />
       ) : (
         filtered.map(contact => (
           <Flex alignItems="center">
