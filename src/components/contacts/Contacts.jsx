@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
+
 import {
   selectAllContacts,
   selectFilter,
@@ -33,6 +34,9 @@ export const ContactList = () => {
 
   return (
     <List justifyContent={'space-between'}>
+      <Heading as="h3" size="lg" p={5}>
+        Contacts
+      </Heading>
       {loading ? (
         <Progress size="md" colorScheme="pink" w="600px" isIndeterminate />
       ) : (
