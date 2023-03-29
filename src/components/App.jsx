@@ -20,6 +20,7 @@ export function App() {
 
   useEffect(() => {
     dispatch(currentUser()).then(() => navigate('/contacts'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
