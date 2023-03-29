@@ -25,7 +25,7 @@ export const ContactList = () => {
 
   const contacts = useSelector(selectAllContacts);
   const loading = useSelector(selectIsLoading);
-  const filter = useSelector(selectFilter);
+  // const filter = useSelector(selectFilter);
 
   const onClickToDelete = event => {
     dispatch(deleteContact(event.target.id));
