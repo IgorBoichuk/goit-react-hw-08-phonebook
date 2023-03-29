@@ -30,7 +30,6 @@ const userSlice = createSlice({
     },
 
     [currentUser.fulfilled](state, action) {
-      console.log(action);
       state.user = action.payload;
       // state.token = action.payload.token;
       state.loggedIn = true;

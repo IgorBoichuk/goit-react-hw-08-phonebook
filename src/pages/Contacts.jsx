@@ -1,11 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from 'redux/operations';
 
-import {
-  selectAllContacts,
-  selectFilter,
-  selectIsLoading,
-} from 'redux/selectors';
+import { selectfilteredData, selectIsLoading } from 'redux/selectors';
 import {
   Box,
   Button,
@@ -23,9 +19,8 @@ import { Filter } from 'components/filter/Filter';
 export const ContactList = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectAllContacts);
+  const contacts = useSelector(selectfilteredData);
   const loading = useSelector(selectIsLoading);
-  // const filter = useSelector(selectFilter);
 
   const onClickToDelete = event => {
     dispatch(deleteContact(event.target.id));
