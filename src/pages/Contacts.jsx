@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/operations';
 
 import {
   selectAllContacts,
@@ -16,6 +16,9 @@ import {
   Progress,
   Spacer,
 } from '@chakra-ui/react';
+import { ContactForm } from './AddContactForm';
+import { useEffect } from 'react';
+import { Filter } from 'components/filter/Filter';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -24,29 +27,31 @@ export const ContactList = () => {
   const loading = useSelector(selectIsLoading);
   const filter = useSelector(selectFilter);
 
-  const filtered = contacts.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   const onClickToDelete = event => {
     dispatch(deleteContact(event.target.id));
   };
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <List justifyContent={'space-between'}>
       <Heading as="h3" size="lg" p={5}>
         Contacts
+        <ContactForm />
       </Heading>
+      <Filter />
       {loading ? (
         <Progress size="md" colorScheme="pink" w="600px" isIndeterminate />
       ) : (
-        filtered.map(contact => (
-          <Flex alignItems="center">
+        contacts.map(contact => (
+          <Flex key={contact.id} alignItems="center">
             <ListItem key={contact.id}>
               <Flex alignItems="center" w={'600px'} justify="space-between">
                 <Box p="4">
                   <Heading size="md">
-                    {contact.name}: {contact.phone}
+                    {contact.name}: {contact.number}
                   </Heading>
                 </Box>
                 <Spacer />

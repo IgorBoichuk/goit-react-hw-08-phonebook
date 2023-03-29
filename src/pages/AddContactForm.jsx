@@ -13,12 +13,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { addContact } from 'redux/operations';
 import { selectAllContacts } from 'redux/selectors';
-import { Filter } from 'components/filter/Filter';
-import { ContactList } from 'components/contacts/Contacts';
 
 export function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
 
@@ -52,7 +50,7 @@ export function ContactForm() {
     if (chackName) {
       alert(`${name} is olready in contacts`);
     } else {
-      dispatch(addContact({ name, phone }));
+      dispatch(addContact({ name, number }));
       reset();
     }
   };
@@ -112,7 +110,7 @@ export function ContactForm() {
                   type="tel"
                   name="phone"
                   placeholder="+380"
-                  value={phone}
+                  value={number}
                   onChange={handleInputChange}
                   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                   title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -135,8 +133,6 @@ export function ContactForm() {
           </Form>
         </Formik>
       </Stack>
-      <Filter />
-      <ContactList />
     </div>
   );
 }

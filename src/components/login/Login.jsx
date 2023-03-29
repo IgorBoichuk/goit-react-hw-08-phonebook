@@ -1,72 +1,57 @@
-import {
-  Box,
-  Button,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  Stack,
-} from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from 'redux/operations';
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = async ({ password, email }) => {
+    await dispatch(loginUser({ password, email })).unwrap();
+    navigate('/contacts');
+  };
   return (
-    <div>
-      <Stack spacing={-5} action="">
-        <InputGroup minWidth="max-content" alignItems="center" p={5}>
-          <InputLeftAddon
-            children="Name"
-            borderLeftRadius={14}
-            border="2px"
-            borderColor="gray.400"
-            borderRight="none"
-            pr={'19px'}
-          />
-          <Input
-            border="2px"
-            borderRightRadius={14}
-            borderColor="gray.400"
-            width={'500px'}
-            type="text"
-            variant="filled"
-            name="name"
-            value={name}
-            onChange={handleInputChange}
-            required
-          />
-        </InputGroup>
-        <InputGroup minWidth="max-content" alignItems="center" p={5}>
-          <InputLeftAddon
-            children="Pass"
-            borderLeftRadius={14}
-            border="2px"
-            borderRight="none"
-            borderColor="gray.400"
-          />
-          <Input
-            border="2px"
-            borderRadius={14}
-            borderColor="gray.400"
-            width={'500px'}
-            variant="filled"
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleInputChange}
-            required
-          />
-        </InputGroup>
-      </Stack>
-      <Box pl={5}>
-        <Button
-          colorScheme="blue"
-          type="button"
-          name="addButton"
-          onClick={onHandleAddBtn}
-          mb={50}
-          p={5}
-        >
-          Create new account
-        </Button>
-      </Box>
-    </div>
+    <Formik initialValues={{ email: '', password: '' }} onSubmit={handleSubmit}>
+      {({ values, handleChange, handleSubmit }) => (
+        <Form onSubmit={handleSubmit}>
+          <div>
+            <FormControl ml={50}>
+              <FormLabel htmlFor="email">Email Address</FormLabel>
+              <Field
+                as={Input}
+                variant="filled"
+                w={500}
+                mb={5}
+                type="email"
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </div>
+          <div>
+            <FormControl ml={50}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Field
+                as={Input}
+                variant="filled"
+                type="password"
+                id="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                w={500}
+                mb={8}
+              />
+            </FormControl>
+          </div>
+          <Button type="submit" colorScheme="blue" w={500} ml={50}>
+            Login
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };

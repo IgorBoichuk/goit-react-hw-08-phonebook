@@ -1,13 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchContacts,
-  deleteContact,
-  addContact,
-  regUser,
-  loginUser,
-  logoutUser,
-  currentUser,
-} from './operations';
+import { fetchContacts, deleteContact, addContact } from './operations';
 
 const contactsSlice = createSlice({
   name: 'contactsList',
@@ -18,7 +10,6 @@ const contactsSlice = createSlice({
       error: null,
     },
     filter: '',
-    login: false,
   },
   reducers: {
     setFilter(state, action) {
@@ -29,26 +20,6 @@ const contactsSlice = createSlice({
     },
   },
   extraReducers: {
-    [regUser.fulfilled](state, action) {
-      state.contacts.items = action.payload;
-      state.contacts.isLoading = false;
-    },
-
-    [loginUser.fulfilled](state, action) {
-      state.contacts.items = action.payload;
-      state.contacts.isLoading = false;
-    },
-
-    [logoutUser.fulfilled](state, action) {
-      state.contacts.items = action.payload;
-      state.contacts.isLoading = false;
-    },
-
-    [currentUser.fulfilled](state, action) {
-      state.contacts.items = action.payload;
-      state.contacts.isLoading = false;
-    },
-
     [fetchContacts.fulfilled](state, action) {
       state.contacts.items = action.payload;
       state.contacts.isLoading = false;
