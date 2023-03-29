@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from 'redux/operations';
 
-import {
-  selectAllContacts,
-  selectFilter,
-  selectfilteredData,
-  selectIsLoading,
-} from 'redux/selectors';
+import { selectfilteredData, selectIsLoading } from 'redux/selectors';
 import {
   Box,
   Button,
