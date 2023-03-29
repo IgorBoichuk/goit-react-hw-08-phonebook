@@ -2,13 +2,13 @@ import { Navigation } from 'components/navigation/Navigation';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { selectLogin } from 'redux/selectors';
+import { selecisLoading, selectLogin } from 'redux/selectors';
 
 export const Layout = () => {
-  const loggedIn = useSelector(selectLogin);
+  const loggedIn = useSelector(selecisLoading);
 
   return (
-    loggedIn && (
+    !loggedIn && (
       <div>
         <Navigation />
         <Outlet />

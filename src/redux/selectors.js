@@ -3,6 +3,7 @@ export const selectIsLoading = state => state.contacts.contacts.isLoading;
 export const selectFilter = state => state.contacts.filter;
 export const selectLogin = state => state.user.loggedIn;
 export const selectUser = state => state.user.user;
+export const selecisLoading = state => state.user.isLoading;
 
 export const selectfilteredData = state => {
   const contacts = selectAllContacts(state);

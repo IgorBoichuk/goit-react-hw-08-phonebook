@@ -1,6 +1,5 @@
 import { Heading, Input, InputGroup } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-
 import { setFilter } from '../../redux/createSlice';
 
 export const Filter = () => {
